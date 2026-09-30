@@ -1,0 +1,16 @@
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\bin\Debug\net8.0\BLL.deps.json
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\bin\Debug\net8.0\BLL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\bin\Debug\net8.0\BLL.pdb
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.sourcelink.json
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\refint\BLL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.pdb
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\ref\BLL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\bin\Debug\net8.0\DAL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\bin\Debug\net8.0\DAL.pdb
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.BLL\obj\Debug\net8.0\BLL.csproj.Up2Date

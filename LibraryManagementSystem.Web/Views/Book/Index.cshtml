@@ -1,0 +1,371 @@
+﻿@model List<Web.ViewModels.Book.BookListVM>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="container-fluid mt-4">
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold mb-1">
+                Library Books
+            </h1>
+
+            <p class="text-muted">
+                Manage all books in your library system
+            </p>
+
+        </div>
+
+        @if (User.IsInRole("Admin") ||
+                User.IsInRole("Librarian"))
+        {
+            <a asp-action="Create"
+               class="btn btn-primary btn-lg shadow-sm">
+
+                + Add New Book
+
+            </a>
+        }
+
+    </div>
+
+
+   
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+
+            @TempData["Success"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+
+            @TempData["Error"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+
+    
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-body">
+
+                    <h5 class="text-muted">
+                        Total Books
+                    </h5>
+
+                    <h2 class="fw-bold">
+                        @Model.Count
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-body">
+
+                    <h5 class="text-muted">
+                        Available Books
+                    </h5>
+
+                    <h2 class="fw-bold text-success">
+
+                        @Model.Count(x => x.Quantity > 0)
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-body">
+
+                    <h5 class="text-muted">
+                        Out Of Stock
+                    </h5>
+
+                    <h2 class="fw-bold text-danger">
+
+                        @Model.Count(x => x.Quantity <= 0)
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+        <div class="card-body">
+
+            <input type="text"
+                   id="searchInput"
+                   class="form-control form-control-lg"
+                   placeholder="Search books by title..." />
+
+        </div>
+
+    </div>
+
+
+   
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle"
+                       id="bookTable">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Book</th>
+
+                            <th>Author</th>
+
+                            <th>Category</th>
+
+                            <th>Quantity</th>
+
+                            <th class="text-center">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var book in Model)
+                        {
+                            <tr>
+
+                               
+                                <td>
+
+                                    <div class="d-flex align-items-center">
+
+                                        @if (!string.IsNullOrEmpty(book.ImageUrl))
+                                        {
+                                            <img src="@book.ImageUrl"
+                                                 class="rounded shadow-sm"
+                                                 width="70"
+                                                 height="90"
+                                                 style="object-fit:cover;" />
+                                        }
+                                        else
+                                        {
+                                            <div class="bg-secondary text-white rounded d-flex justify-content-center align-items-center"
+                                                 style="width:70px;height:90px;">
+
+                                                No Image
+
+                                            </div>
+                                        }
+
+                                        <div class="ms-3">
+
+                                            <h6 class="fw-bold mb-1">
+
+                                                @book.Title
+
+                                            </h6>
+
+                                            <small class="text-muted">
+
+                                                Book ID: @book.Id
+
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                
+                                <td>
+
+                                    @book.AuthorName
+
+                                </td>
+
+
+                                
+                                <td>
+
+                                    <span class="badge bg-dark fs-6">
+
+                                        @book.CategoryName
+
+                                    </span>
+
+                                </td>
+
+
+                                
+                                <td>
+
+                                    @if (book.Quantity > 0)
+                                    {
+                                        <span class="badge bg-success fs-6">
+
+                                            @book.Quantity Available
+
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger fs-6">
+
+                                            Out Of Stock
+
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                
+                                <td class="text-center">
+
+                                    <a asp-controller="Book" 
+                                    asp-action="Details"
+                                       asp-route-id="@book.Id"
+                                       class="btn btn-info btn-sm">
+
+                                        Details
+
+                                    </a>
+
+                                    @if (User.IsInRole("Admin") ||
+                                                                    User.IsInRole("Librarian"))
+                                    {
+                                        <a asp-action="Edit"
+                                           asp-route-id="@book.Id"
+                                           class="btn btn-warning btn-sm">
+
+                                            Edit
+
+                                        </a>
+
+                                        <form 
+                                            asp-action="Delete"
+                                              method="post"
+                                              class="d-inline">
+
+                                            <input type="hidden"
+                                                   name="id"
+                                                   value="@book.Id" />
+
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-sm">
+
+                                                Delete
+
+                                            </button>
+
+                                        </form>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+       
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        searchInput.addEventListener("keyup", function () {
+
+            const value =
+                this.value.toLowerCase();
+
+            const rows =
+                document.querySelectorAll("#bookTable tbody tr");
+
+            rows.forEach(row => {
+
+                const text =
+                    row.innerText.toLowerCase();
+
+                row.style.display =
+                    text.includes(value)
+                    ? ""
+                    : "none";
+
+            });
+
+        });
+
+    </script>
+}

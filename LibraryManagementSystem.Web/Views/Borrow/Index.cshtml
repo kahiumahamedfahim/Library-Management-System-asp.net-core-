@@ -1,0 +1,152 @@
+﻿@model List<DAL.EF.Table.BorrowRecord>
+
+@{
+    ViewData["Title"] = "Borrow Records";
+}
+
+<div class="container-fluid mt-4">
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                Borrow Records
+
+            </h1>
+
+            <p class="text-muted">
+
+                All borrowed books history
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+
+            @TempData["Success"]
+
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+
+            @TempData["Error"]
+
+        </div>
+    }
+
+
+    
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>User</th>
+
+                            <th>Book</th>
+
+                            <th>Borrow Date</th>
+
+                            <th>Due Date</th>
+
+                            <th>Return Date</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var borrow in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    @borrow.User.Name
+
+                                </td>
+
+                                <td>
+
+                                    @borrow.Book.Title
+
+                                </td>
+
+                                <td>
+
+                                    @borrow.BorrowDate.ToString("dd MMM yyyy")
+
+                                </td>
+
+                                <td>
+
+                                    @borrow.DueDate.ToString("dd MMM yyyy")
+
+                                </td>
+
+                                <td>
+
+                                    @(borrow.ReturnDate?.ToString("dd MMM yyyy")
+                                                                    ?? "Not Returned")
+
+                            </td>
+
+                                <td>
+
+                                @if (borrow.Status == "Borrowed")
+                                    {
+                                        <span class="badge bg-success">
+
+                                            Borrowed
+
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+
+                                            Returned
+
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

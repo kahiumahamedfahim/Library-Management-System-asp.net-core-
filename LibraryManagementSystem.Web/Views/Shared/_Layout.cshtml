@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - Library Management System
+    </title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+                   SIDEBAR
+                ========================= */
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111827;
+            color: white;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 14px 25px;
+            font-size: 17px;
+            transition: 0.3s;
+        }
+
+            .sidebar a:hover {
+                background-color: #1f2937;
+                color: white;
+            }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        /* =========================
+                   MAIN CONTENT
+                ========================= */
+
+        .main-content {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        /* =========================
+                   TOPBAR
+                ========================= */
+
+        .topbar {
+            background-color: white;
+            padding: 18px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .page-title {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .user-box {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* =========================
+                   PAGE CONTENT
+                ========================= */
+
+        .content-area {
+            padding: 30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <div class="sidebar">
+
+        <!-- TITLE -->
+        <div class="sidebar-title">
+
+            Library LMS
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+        @if (User.Identity != null &&
+                User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Home"
+               asp-action="Index">
+
+                <i class="bi bi-house-door-fill"></i>
+                Dashboard
+
+            </a>
+        }
+
+
+        <!-- BOOKS -->
+        <a asp-controller="Book"
+           asp-action="Index">
+
+            <i class="bi bi-book-fill"></i>
+            Books
+
+        </a>
+
+
+        <!-- MEMBER -->
+        @if (User.IsInRole("Member"))
+        {
+            <a asp-controller="Borrow"
+               asp-action="MyBorrows">
+
+                <i class="bi bi-journal-check"></i>
+                My Borrows
+
+            </a>
+        }
+
+
+        <!-- LIBRARIAN + ADMIN -->
+        @if (User.IsInRole("Admin") ||
+                User.IsInRole("Librarian"))
+        {
+            <a asp-controller="Author"
+               asp-action="Index">
+
+                <i class="bi bi-pen-fill"></i>
+                Authors
+
+            </a>
+
+
+            <a asp-controller="Category"
+               asp-action="Index">
+
+                <i class="bi bi-grid-fill"></i>
+                Categories
+
+            </a>
+
+
+            <a asp-controller="Borrow"
+               asp-action="Index">
+
+                <i class="bi bi-arrow-left-right"></i>
+                Borrow Records
+
+            </a>
+        }
+
+
+        <!-- ADMIN ONLY -->
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="User"
+               asp-action="Index">
+
+                <i class="bi bi-people-fill"></i>
+                Manage Users
+
+            </a>
+        }
+
+
+        <!-- GUEST -->
+        @if (User.Identity == null ||
+                !User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Auth"
+               asp-action="Login">
+
+                <i class="bi bi-box-arrow-in-right"></i>
+                Login
+
+            </a>
+
+
+            <a asp-controller="Auth"
+               asp-action="Register">
+
+                <i class="bi bi-person-plus"></i>
+                Register
+
+            </a>
+        }
+
+
+        <!-- LOGOUT -->
+        @if (User.Identity != null &&
+                User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Auth"
+               asp-action="Logout">
+
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
+
+            </a>
+        }
+
+    </div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <div class="main-content">
+
+        <!-- TOPBAR -->
+        <div class="topbar d-flex justify-content-between align-items-center">
+
+            <h4 class="page-title">
+
+                @ViewData["Title"]
+
+            </h4>
+
+
+            <div class="user-box">
+
+                <i class="bi bi-person-circle"></i>
+
+                @if (User.Identity != null &&
+                                User.Identity.IsAuthenticated)
+                {
+                    <span>
+
+                        @User.Identity.Name
+
+                    </span>
+                }
+                else
+                {
+                    <span>
+
+                        Guest
+
+                    </span>
+                }
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGE CONTENT -->
+        <div class="content-area">
+
+            @RenderBody()
+
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

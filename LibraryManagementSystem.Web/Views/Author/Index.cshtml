@@ -1,0 +1,182 @@
+﻿@model List<App.ViewModels.Author.AuthorListVM>
+
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<div class="container-fluid mt-4">
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h1 class="fw-bold">
+                Authors
+            </h1>
+
+            <p class="text-muted">
+                Manage all book authors
+            </p>
+
+        </div>
+
+        <a asp-action="Create"
+           class="btn btn-primary btn-lg shadow-sm">
+
+            + Add Author
+
+        </a>
+
+    </div>
+
+
+    
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+
+            @TempData["Success"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+
+            @TempData["Error"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    }
+
+
+   
+    <div class="card border-0 shadow-lg rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Author Name</th>
+
+                            <th>Bio</th>
+
+                            <th class="text-center">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var author in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @author.Id
+                                </td>
+
+
+                                <td>
+
+                                    <h6 class="fw-bold mb-0">
+
+                                        @author.Name
+
+                                    </h6>
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(author.Bio))
+                                    {
+                                        <span class="text-muted">
+
+                                            @(author.Bio.Length > 120
+                                                                                ? author.Bio.Substring(0, 120) + "..."
+                                                                                : author.Bio)
+
+                                </span>
+                                                                }
+                                    else
+                                    {
+                                        <span class="text-secondary">
+
+                                            No bio available
+
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@author.Id"
+                                       class="btn btn-warning btn-sm">
+
+                                        Edit
+
+                                    </a>
+
+
+                                    <form asp-action="Delete"
+                                          method="post"
+                                          class="d-inline">
+
+                                        <input type="hidden"
+                                               name="id"
+                                               value="@author.Id" />
+
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Delete this author?')">
+
+                                            Delete
+
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

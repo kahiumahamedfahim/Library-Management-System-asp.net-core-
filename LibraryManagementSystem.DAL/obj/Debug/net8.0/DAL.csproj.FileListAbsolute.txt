@@ -1,0 +1,15 @@
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\bin\Debug\net8.0\DAL.deps.json
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\bin\Debug\net8.0\DAL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\bin\Debug\net8.0\DAL.pdb
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.sourcelink.json
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\refint\DAL.dll
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.pdb
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+D:\asp.net core\Projects\pranto '\Library-Management-System-asp.net-core-\LibraryManagementSystem.DAL\obj\Debug\net8.0\ref\DAL.dll
